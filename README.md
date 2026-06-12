@@ -3,9 +3,10 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.x-black?logo=flask)](https://flask.palletsprojects.com)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--3.5--turbo-412991?logo=openai)](https://openai.com)
+[![NLTK](https://img.shields.io/badge/NLP-NLTK-lightgreen)](https://www.nltk.org/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?logo=render)](https://echo-bot-qflo.onrender.com)
 
-> A domain-specific conversational AI assistant for Indian farmers — powered by GPT-3.5-turbo with real-time weather forecasting and commodity price lookup.
+> A domain-specific conversational AI chatbot built for Indian farmers — powered by **OpenAI GPT-3.5-turbo** with 20+ agriculture intent categories covering crops, soil, irrigation, pest control, livestock, government schemes, and more.
 
 🔗 **Live Demo:** [echo-bot-qflo.onrender.com](https://echo-bot-qflo.onrender.com)
 
@@ -13,38 +14,43 @@
 
 ## 📌 Overview
 
-Echo-Bot is an agriculture-focused chatbot that helps Indian farmers with:
-- Real-time **weather forecasts** for their location
-- Live **commodity & market prices** (via Data.gov.in)
-- Guidance on **crop selection**, **soil management**, **pest control**, and more
-- **Government schemes** and loan information for farmers
-- General **agricultural best practices** using GPT-3.5-turbo
+Echo-Bot is an agriculture-focused intelligent chatbot designed to assist Indian farmers with everyday farming queries. It uses a hybrid approach — **intent matching** for structured agriculture responses and **GPT-3.5-turbo** as a fallback for open-ended questions.
 
 ---
 
-## 🚀 Features
+## ✅ Working Features
 
 | Feature | Description |
 |---|---|
-| 🤖 LLM-Powered Responses | Uses OpenAI GPT-3.5-turbo for intelligent, context-aware answers |
-| 🌦️ Weather Forecast | Real-time weather data via OpenWeatherMap API |
-| 💰 Commodity Prices | Live market prices from Data.gov.in API |
-| 🌱 Agriculture Domain | 15+ intent categories covering all major farming topics |
-| 🇮🇳 India-Specific | Covers state-wise crop advice, Kharif/Rabi seasons, govt schemes |
+| 🤖 LLM-Powered Responses | OpenAI GPT-3.5-turbo with agriculture-specific system prompt |
+| 🌱 Intent-Based QA | 20+ intents covering all major farming domains |
+| 💰 Crop Price Info | Wheat, rice, onion, cotton, sugarcane price guidance |
+| 🌾 Farming Techniques | Soil prep, crop rotation, yield improvement, harvesting |
+| 🐛 Pest Management | IPM — biological, cultural, and chemical methods |
+| 🏞️ Soil Management | Fertility, erosion prevention, organic amendments |
+| 💧 Irrigation Methods | Drip, sprinkler, precision irrigation guidance |
+| 🌿 Organic Farming | Natural pesticides, composting, eco-friendly methods |
+| 🐄 Livestock Management | Animal husbandry, nutrition, sustainable practices |
+| 🛰️ AgriTech | Drones, precision farming, smart equipment info |
+| 🌡️ Climate Resilience | Climate change adaptation, extreme weather guidance |
+| 🏦 Govt Schemes & Loans | PM Fasal Bima Yojana, Kisan Credit Card, PM Kisan Samman Nidhi |
+| 🇮🇳 India-Specific Crops | North/South India, Kharif/Rabi season recommendations |
 | 🌐 Web Interface | Clean chat UI served via Flask |
-| ☁️ Cloud Deployed | Hosted on Render with WSGI server |
+| ☁️ Cloud Deployed | Hosted live on Render |
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend:** Python, Flask
-- **AI/LLM:** OpenAI GPT-3.5-turbo
-- **NLP:** NLTK (tokenizer, POS tagger, WordNet, stopwords)
-- **APIs:** OpenWeatherMap, Data.gov.in
-- **Frontend:** HTML, CSS, JavaScript
-- **Deployment:** Render (via `wsgi.py`)
-- **Config:** python-dotenv
+| Layer | Technology |
+|---|---|
+| **Backend** | Python, Flask |
+| **AI / LLM** | OpenAI GPT-3.5-turbo |
+| **NLP** | NLTK (tokenizer, POS tagger, WordNet, stopwords) |
+| **Intent Engine** | Custom JSON-based intent matching |
+| **Frontend** | HTML, CSS, JavaScript |
+| **Deployment** | Render (via `wsgi.py` + Gunicorn) |
+| **Config** | python-dotenv |
 
 ---
 
@@ -52,36 +58,37 @@ Echo-Bot is an agriculture-focused chatbot that helps Indian farmers with:
 
 ```
 Echo-bot/
-├── MyApp.py          # Main Flask application & API logic
-├── intents.json      # Agriculture chatbot intent dataset (15+ categories)
-├── wsgi.py           # WSGI entry point for production deployment
-├── requirements.txt  # Python dependencies
+├── MyApp.py            # Main Flask app — routing, intent matching, GPT integration
+├── intents.json        # Agriculture intent dataset (20+ categories, 100+ patterns)
+├── wsgi.py             # WSGI entry point for Render deployment
+├── requirements.txt    # Python dependencies
 └── templates/
-    └── try.html      # Frontend chat interface
+    └── try.html        # Frontend chat interface
 ```
 
 ---
 
-## 🧠 Intent Categories
+## 🧠 Intent Categories (20+)
 
-The chatbot handles the following agriculture domains:
-
-- `greeting` — Conversational greetings
-- `weather_forecast` — Weather queries
-- `crop_prices` — Commodity prices (wheat, rice, cotton, sugarcane, onions)
-- `agricultural_techniques` — Farming best practices
-- `pest_management` — Pest control and IPM
-- `soil_management` — Soil health and erosion prevention
-- `irrigation_methods` — Drip, sprinkler, and precision irrigation
-- `crop_selection` — Crop selection based on region/season
-- `crop_selection_india` — India-specific (North/South, Kharif/Rabi)
-- `organic_farming` — Organic and eco-friendly methods
-- `livestock_management` — Animal husbandry
-- `technology_in_agriculture` — Drones, precision farming, IoT
-- `climate_resilient_farming` — Climate change adaptation
-- `loans` — Govt subsidies and loan schemes
-- `schemes` — PM Fasal Bima Yojana, Kisan Credit Card, etc.
-- `farmer_assistance` — General support and guidance
+```
+greeting              → Conversational greetings
+weather_forecast      → General weather-based farming guidance
+crop_prices           → Wheat, rice, onion, cotton, sugarcane pricing
+agricultural_techniques → Soil prep, yield, rotation, harvesting
+pest_management       → IPM — biological, cultural, chemical
+soil_management       → Fertility, erosion, organic amendments
+irrigation_methods    → Drip, sprinkler, precision irrigation
+crop_selection        → Based on soil, climate, market demand
+crop_selection_india  → Kharif/Rabi, North/South India specific
+organic_farming       → Natural pesticides, composting
+livestock_management  → Animal husbandry and nutrition
+technology_in_agriculture → Drones, IoT, precision farming
+climate_resilient_farming → Adaptation to extreme weather
+loans                 → Subsidies, PM Fasal Bima Yojana
+schemes               → Kisan Credit Card, PM Kisan Samman Nidhi
+farmer_assistance     → General farming support
+unrecognized_input    → Graceful fallback response
+```
 
 ---
 
@@ -102,8 +109,6 @@ pip install -r requirements.txt
 Create a `.env` file in the root directory:
 ```env
 OPENAI_API_KEY=your_openai_api_key
-WEATHER_API_KEY=your_openweathermap_api_key
-DATA_GOV_API_KEY=your_data_gov_in_api_key
 ```
 
 ### 4. Run the app
@@ -117,35 +122,41 @@ Visit `http://localhost:5000` in your browser.
 
 ## 🌐 Deployment
 
-The app is deployed on **Render** using `wsgi.py` as the entry point.
+Deployed on **Render** using Gunicorn as the production WSGI server.
 
 ```bash
-# Production server command
 gunicorn wsgi:app
 ```
 
 ---
 
-## 📸 Screenshots
+## 💬 Sample Conversations
 
-> Chat interface with real-time responses from GPT-3.5-turbo and live API data.
+```
+User: What is the best crop for Kharif season?
+Bot:  Recommended crops for the Kharif season include rice, maize, and cotton.
 
----
+User: How do I control pests in my crops?
+Bot:  Integrated pest management (IPM) is effective — it combines biological,
+      cultural, and chemical methods for sustainable pest control.
 
-## 🤝 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+User: What government schemes are available for farmers?
+Bot:  Key schemes: 1) PM Fasal Bima Yojana - crop insurance,
+      2) Kisan Credit Card - easy credit access,
+      3) PM Kisan Samman Nidhi - Rs.6000/year direct benefit,
+      4) National Horticulture Mission - horticulture support.
+```
 
 ---
 
 ## 👤 Author
 
 **Raj Verma**
-- GitHub: [@Raj-Verma-1998](https://github.com/Raj-Verma-1998)
-- Project: [Echo-bot](https://github.com/Raj-Verma-1998/Echo-bot)
+- 🔗 GitHub: [@Raj-Verma-1998](https://github.com/Raj-Verma-1998)
+- 🌐 Live: [echo-bot-qflo.onrender.com](https://echo-bot-qflo.onrender.com)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
