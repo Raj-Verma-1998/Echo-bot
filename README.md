@@ -1,4 +1,4 @@
-# 🤖 Echo-Bot — AI Conversational Chatbot
+# 🌾 Echo-Bot — Agriculture AI Chatbot
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-2.x-black?logo=flask)](https://flask.palletsprojects.com)
@@ -6,7 +6,7 @@
 [![NLTK](https://img.shields.io/badge/NLP-NLTK-lightgreen)](https://www.nltk.org/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?logo=render)](https://echo-bot-qflo.onrender.com)
 
-> A general-purpose conversational AI chatbot powered by **OpenAI GPT-3.5-turbo**, with an intent-matching layer for common conversational patterns (greetings, thanks, small talk) and a web chat interface.
+> A domain-specific conversational AI chatbot built for Indian farmers — powered by **OpenAI GPT-3.5-turbo** with 20+ agriculture intent categories covering crops, soil, irrigation, pest control, livestock, government schemes, and more.
 
 🔗 **Live Demo:** [echo-bot-qflo.onrender.com](https://echo-bot-qflo.onrender.com)
 
@@ -14,19 +14,29 @@
 
 ## 📌 Overview
 
-Echo-Bot is a lightweight AI chatbot built with Flask and OpenAI's GPT-3.5-turbo model. It combines simple intent-based responses for common conversational patterns with LLM-powered responses for open-ended questions, making it a flexible starting point for any conversational AI use case.
+Echo-Bot is an agriculture-focused intelligent chatbot designed to assist Indian farmers with everyday farming queries. It uses a hybrid approach — **intent matching** for structured agriculture responses and **GPT-3.5-turbo** as a fallback for open-ended questions.
 
 ---
 
-## ✅ Features
+## ✅ Working Features
 
 | Feature | Description |
 |---|---|
-| 🤖 LLM-Powered Responses | OpenAI GPT-3.5-turbo for open-ended, natural conversation |
-| 💬 Intent-Based Replies | Lightweight intent matching for greetings, thanks, small talk, and FAQs |
-| 🌐 Web Chat Interface | Clean chat UI served via Flask |
+| 🤖 LLM-Powered Responses | OpenAI GPT-3.5-turbo with agriculture-specific system prompt |
+| 🌱 Intent-Based QA | 20+ intents covering all major farming domains |
+| 💰 Crop Price Info | Wheat, rice, onion, cotton, sugarcane price guidance |
+| 🌾 Farming Techniques | Soil prep, crop rotation, yield improvement, harvesting |
+| 🐛 Pest Management | IPM — biological, cultural, and chemical methods |
+| 🏞️ Soil Management | Fertility, erosion prevention, organic amendments |
+| 💧 Irrigation Methods | Drip, sprinkler, precision irrigation guidance |
+| 🌿 Organic Farming | Natural pesticides, composting, eco-friendly methods |
+| 🐄 Livestock Management | Animal husbandry, nutrition, sustainable practices |
+| 🛰️ AgriTech | Drones, precision farming, smart equipment info |
+| 🌡️ Climate Resilience | Climate change adaptation, extreme weather guidance |
+| 🏦 Govt Schemes & Loans | PM Fasal Bima Yojana, Kisan Credit Card, PM Kisan Samman Nidhi |
+| 🇮🇳 India-Specific Crops | North/South India, Kharif/Rabi season recommendations |
+| 🌐 Web Interface | Clean chat UI served via Flask |
 | ☁️ Cloud Deployed | Hosted live on Render |
-| 🧩 Easily Extensible | Add new intents or swap in a different LLM/system prompt for any domain |
 
 ---
 
@@ -48,29 +58,37 @@ Echo-Bot is a lightweight AI chatbot built with Flask and OpenAI's GPT-3.5-turbo
 
 ```
 Echo-bot/
-├── MyApp.py            # Main Flask app — routing and GPT integration
-├── intents.json         # General-purpose intent dataset (greetings, thanks, small talk, etc.)
-├── wsgi.py              # WSGI entry point for Render deployment
-├── requirements.txt     # Python dependencies
+├── MyApp.py            # Main Flask app — routing, intent matching, GPT integration
+├── intents.json        # Agriculture intent dataset (20+ categories, 100+ patterns)
+├── wsgi.py             # WSGI entry point for Render deployment
+├── requirements.txt    # Python dependencies
 └── templates/
-    └── try.html         # Frontend chat interface
+    └── try.html        # Frontend chat interface
 ```
 
 ---
 
-## 🧠 Intent Categories
+## 🧠 Intent Categories (20+)
 
 ```
-greeting           → Conversational greetings
-goodbye            → Farewell messages
-thanks             → Acknowledging thanks
-about_bot          → Questions about the bot itself
-help               → General help requests
-smalltalk          → Casual conversation
-unrecognized_input → Graceful fallback response
+greeting              → Conversational greetings
+weather_forecast      → General weather-based farming guidance
+crop_prices           → Wheat, rice, onion, cotton, sugarcane pricing
+agricultural_techniques → Soil prep, yield, rotation, harvesting
+pest_management       → IPM — biological, cultural, chemical
+soil_management       → Fertility, erosion, organic amendments
+irrigation_methods    → Drip, sprinkler, precision irrigation
+crop_selection        → Based on soil, climate, market demand
+crop_selection_india  → Kharif/Rabi, North/South India specific
+organic_farming       → Natural pesticides, composting
+livestock_management  → Animal husbandry and nutrition
+technology_in_agriculture → Drones, IoT, precision farming
+climate_resilient_farming → Adaptation to extreme weather
+loans                 → Subsidies, PM Fasal Bima Yojana
+schemes               → Kisan Credit Card, PM Kisan Samman Nidhi
+farmer_assistance     → General farming support
+unrecognized_input    → Graceful fallback response
 ```
-
-For anything outside these intents, the bot falls back to GPT-3.5-turbo for a natural, open-ended response.
 
 ---
 
@@ -112,17 +130,21 @@ gunicorn wsgi:app
 
 ---
 
-## 💬 Sample Conversation
+## 💬 Sample Conversations
 
 ```
-User: Hi there!
-Bot:  Hello! How can I help you today?
+User: What is the best crop for Kharif season?
+Bot:  Recommended crops for the Kharif season include rice, maize, and cotton.
 
-User: What can you do?
-Bot:  I'm a conversational AI chatbot. Ask me anything and I'll do my best to help!
+User: How do I control pests in my crops?
+Bot:  Integrated pest management (IPM) is effective — it combines biological,
+      cultural, and chemical methods for sustainable pest control.
 
-User: Can you explain how neural networks work?
-Bot:  [GPT-3.5-turbo generates a natural, open-ended response]
+User: What government schemes are available for farmers?
+Bot:  Key schemes: 1) PM Fasal Bima Yojana - crop insurance,
+      2) Kisan Credit Card - easy credit access,
+      3) PM Kisan Samman Nidhi - Rs.6000/year direct benefit,
+      4) National Horticulture Mission - horticulture support.
 ```
 
 ---
